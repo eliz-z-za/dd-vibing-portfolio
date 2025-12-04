@@ -72,7 +72,7 @@
 }
 
 /* ============================================
-   CARD COMPONENTS
+   UNIFIED CARD COMPONENT
    ============================================ */
 
 /* Base Card */
@@ -82,190 +82,166 @@
     border: 1px solid var(--border-light);
     overflow: hidden;
     transition: var(--transition);
+    padding: var(--space-16);
+    display: flex;
+    flex-direction: column;
 }
 
 .card:hover {
-    box-shadow: 0 10px 30px rgba(124, 58, 237, 0.1);
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.1);
     border-color: var(--accent-purple);
 }
 
-.card-image {
-    width: 100%;
+/* Card Image */
+.card__image {
+    width: calc(100% + var(--space-32));
+    margin: calc(-1 * var(--space-16));
+    margin-bottom: var(--space-16);
     height: 200px;
     object-fit: cover;
     display: block;
 }
 
-.card-body {
-    padding: var(--space-24);
-}
-
-.card-title {
-    margin: 0 0 var(--space-8) 0;
-    color: var(--primary-black);
-}
-
-.card-text {
+.card__image--rounded {
+    width: 100%;
     margin: 0 0 var(--space-16) 0;
-    color: var(--text-gray);
-    font-size: 0.95rem;
+    border-radius: 8px;
 }
 
-.card-footer {
-    padding: 0 var(--space-24) var(--space-24);
-    display: flex;
-    gap: var(--space-12);
-    flex-wrap: wrap;
-}
-
-/* Stat Card */
-.stat-card {
-    padding: var(--space-32);
-    background-color: var(--light-bg);
-    border: 1px solid var(--border-light);
-    border-radius: 12px;
-    text-align: center;
-    transition: var(--transition);
-}
-
-.stat-card:hover {
-    box-shadow: 0 10px 30px rgba(124, 58, 237, 0.1);
-    border-color: var(--accent-purple);
-    transform: translateY(-5px);
-}
-
-.stat-card-number {
-    font-size: 2.5rem;
-    color: var(--accent-purple);
-    font-weight: 700;
-    margin-bottom: var(--space-8);
-    display: block;
-}
-
-.stat-card-label {
-    font-size: 0.95rem;
-    color: var(--text-gray);
-    margin: 0;
-}
-
-/* Featured Card */
-.featured-card {
-    background-color: var(--light-bg);
-    border-radius: 12px;
+/* Card Video Wrapper */
+.card__video {
+    width: calc(100% + var(--space-32));
+    margin: calc(-1 * var(--space-16));
+    margin-bottom: var(--space-16);
+    position: relative;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
-    transition: var(--transition);
+    background-color: #000;
+    flex-shrink: 0;
 }
 
-.featured-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-}
-
-.featured-card-image {
+.card__video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    height: 100%;
+    border: none;
 }
 
-.featured-card-title {
-    padding: var(--space-24) var(--space-24) var(--space-12);
-    margin: 0;
+/* Card Badge */
+.card__badge {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent-purple);
+    background: rgba(124, 58, 237, 0.1);
+    padding: var(--space-4) var(--space-12);
+    border-radius: 20px;
+    margin-bottom: var(--space-8);
+    letter-spacing: 0.03em;
+}
+
+/* Card Title */
+.card__title {
+    font-size: 1.1rem;
+    margin: 0 0 var(--space-4) 0;
     color: var(--primary-black);
+    font-weight: 600;
 }
 
-.featured-card-text {
-    padding: 0 var(--space-24) var(--space-16);
+/* Card Subtitle */
+.card__subtitle {
+    font-size: 0.85rem;
+    color: var(--accent-purple);
+    font-weight: 500;
+    margin: 0 0 var(--space-8) 0;
+}
+
+/* Card Text/Description */
+.card__text {
     margin: 0;
     color: var(--text-gray);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
 }
 
-.featured-card-link {
-    display: block;
-    padding: var(--space-16) var(--space-24) var(--space-24);
+/* Card List */
+.card__list {
+    list-style: none;
+    margin: var(--space-8) 0 0 0;
+    padding: 0;
+}
+
+.card__list li {
+    position: relative;
+    padding: var(--space-4) 0 var(--space-4) var(--space-16);
+    color: var(--text-gray);
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.card__list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent-purple);
+    font-weight: bold;
+}
+
+/* Card Actions (links, buttons, audio) */
+.card__action {
+    margin-top: auto;
+    padding-top: var(--space-12);
+}
+
+.card__link {
+    display: inline-block;
     font-weight: 600;
     color: var(--accent-purple);
+    font-size: 0.9rem;
     transition: var(--transition);
 }
 
-.featured-card-link:hover {
+.card__link:hover {
     color: var(--accent-pink);
 }
 
-/* Project Card */
-.project-card {
-    background-color: var(--white);
-    padding: var(--space-40);
-    border-radius: 12px;
-    border: 1px solid var(--border-light);
-    transition: var(--transition);
-}
-
-.project-card:hover {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    border-color: var(--accent-purple);
-}
-
-.project-card-badge {
-    display: inline-block;
-    background-color: var(--accent-purple);
-    color: var(--white);
-    padding: var(--space-4) var(--space-12);
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    margin-bottom: var(--space-12);
-}
-
-.project-card-title {
-    margin: 0 0 var(--space-16) 0;
-}
-
-.project-card-image {
+.card__audio {
     width: 100%;
-    border-radius: 12px;
-    margin-bottom: var(--space-24);
-}
-
-/* Cover Card (Audio) */
-.cover-card {
-    background-color: var(--white);
-    padding: var(--space-20);
-    border-radius: 12px;
-    border: 1px solid var(--border-light);
-    transition: var(--transition);
-    text-align: center;
-}
-
-.cover-card:hover {
-    border-color: var(--accent-purple);
-    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.1);
-}
-
-.cover-card-player {
-    width: 100%;
-    margin-bottom: var(--space-16);
+    margin-top: var(--space-12);
     border-radius: 6px;
     accent-color: var(--accent-purple);
 }
 
-.cover-card-title {
-    font-size: 0.95rem;
-    margin: 0 0 var(--space-4) 0;
-    color: var(--primary-black);
+/* Card Modifiers */
+.card--no-padding {
+    padding: 0;
 }
 
-.cover-card-artist {
-    color: var(--text-gray);
-    font-size: 0.85rem;
-    margin: 0 0 var(--space-4) 0;
-}
-
-.cover-card-date {
-    color: #999;
-    font-size: 0.75rem;
+.card--no-padding .card__video {
+    width: 100%;
     margin: 0;
+    margin-bottom: 0;
+    border-radius: 12px 12px 0 0;
+    aspect-ratio: 16 / 9;
+}
+
+.card--no-border {
+    border: none;
+}
+
+.card--bg-light {
+    background-color: var(--light-bg);
+}
+
+.card--hover-lift:hover {
+    transform: translateY(-3px);
+}
+
+.card--centered {
+    text-align: center;
 }
 
 /* Video Card */
@@ -665,66 +641,7 @@
     visibility: hidden;
 }
 
-/* Year badge */
-.timeline-alt-year {
-    display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--accent-purple);
-    background: rgba(124, 58, 237, 0.1);
-    padding: var(--space-4) var(--space-12);
-    border-radius: 20px;
-    margin-bottom: var(--space-8);
-    letter-spacing: 0.03em;
-}
-
-
-/* Title */
-.timeline-alt-title {
-    font-size: 1.1rem;
-    margin: 0 0 var(--space-4) 0;
-    color: var(--primary-black);
-    font-weight: 600;
-}
-
-/* Subtitle (company/university) */
-.timeline-alt-subtitle {
-    font-size: 0.85rem;
-    color: var(--accent-purple);
-    font-weight: 500;
-    margin: 0 0 var(--space-8) 0;
-}
-
-/* Description */
-.timeline-alt-desc {
-    margin: 0;
-    color: var(--text-gray);
-    font-size: 0.9rem;
-    line-height: 1.6;
-}
-
-/* List inside timeline */
-.timeline-alt-list {
-    list-style: none;
-    margin: var(--space-8) 0 0 0;
-    padding: 0;
-}
-
-.timeline-alt-list li {
-    position: relative;
-    padding: var(--space-4) 0 var(--space-4) var(--space-16);
-    color: var(--text-gray);
-    font-size: 0.85rem;
-    line-height: 1.5;
-}
-
-.timeline-alt-list li::before {
-    content: '•';
-    position: absolute;
-    left: 0;
-    color: var(--accent-purple);
-    font-weight: bold;
-}
+/* Timeline uses unified card classes: .card__badge, .card__title, .card__subtitle, .card__text, .card__list */
 
 
 /* Animation */
